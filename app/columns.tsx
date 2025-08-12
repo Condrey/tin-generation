@@ -121,7 +121,7 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
       const tin = staff.tin;
       return (
         <div>
-          <div>{staff.name}</div>
+          <div className="flex line-clamp-1 text-ellipsis">{staff.name}</div>
           {isMobile && (
             <>
               <div
@@ -131,13 +131,13 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
                     .writeText(staff.supplierNumber)
                     .then(() => {
                       toast.info(
-                        `Supplier number for ${staff.name} copied to clipboard`,
+                        `Supplier number for ${staff.name} copied to clipboard`
                       );
                     })
                     .catch((err) => {
                       console.error("Failed to copy:", err);
                       toast.error(
-                        `Could not copy supplier number for ${staff.name}`,
+                        `Could not copy supplier number for ${staff.name}`
                       );
                     });
                 }}
@@ -151,13 +151,13 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
                     .writeText(staff.employeeNumber)
                     .then(() => {
                       toast.info(
-                        `Employee number for ${staff.name} copied to clipboard`,
+                        `Employee number for ${staff.name} copied to clipboard`
                       );
                     })
                     .catch((err) => {
                       console.error("Failed to copy:", err);
                       toast.error(
-                        `Could not copy employee number for ${staff.name}`,
+                        `Could not copy employee number for ${staff.name}`
                       );
                     });
                 }}
@@ -165,13 +165,13 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
                 {staff.employeeNumber}
               </div>
               {!tin ? (
-                <div className='text-destructive text-xs before:content-["TIN:"] before:mr-2'>
+                <div className='text-destructive italic text-xs before:content-["TIN:"] before:mr-2'>
                   --has no TIN--
                 </div>
               ) : (
                 <div
                   className={cn(
-                    'text-muted-foreground text-xs  before:content-["TIN:"] before:mr-2 hover:text-foreground hover:cursor-pointer',
+                    'text-muted-foreground text-xs  before:content-["TIN:"] before:mr-2 hover:text-foreground hover:cursor-pointer'
                   )}
                   onClick={() => {
                     navigator.clipboard
