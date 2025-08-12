@@ -62,7 +62,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           <span className="hidden sm:flex">({remainingStaffs.length})</span>
         </TabsTrigger>
         <TabsTrigger value="completed">
-          <UserCheck2Icon className="text-green-500 hidden sm:flex dark:text-green-300" />
+          <UserCheck2Icon className="text-green-500 hidden sm:flex dark:text-green-700" />
           Completed{" "}
           <span className="hidden sm:flex">({completedStaffs.length})</span>
         </TabsTrigger>
@@ -81,7 +81,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               List of all affected staffs
             </h1>
           }
-          className="w-full max-w-5xl mx-auto"
+          className="md:w-full max-w-5xl mx-auto"
         >
           <ButtonAddEditStaff variant="default" size="icon">
             <PlusIcon />
@@ -99,7 +99,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               List of staffs without TINs
             </h1>
           }
-          className="w-full max-w-5xl mx-auto"
+          className="md:w-full max-w-5xl mx-auto"
         >
           <ButtonAddEditStaff variant="default" size="icon">
             <PlusIcon />
@@ -113,11 +113,11 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           query={query}
           filterColumn={{ id: "name" }}
           tableHeaderSection={
-            <h1 className="md:text-xl text-green-500 dark:text-green-300 capitalize font-semibold tracking-tight">
+            <h1 className="md:text-xl text-green-500 dark:text-green-700 capitalize font-semibold tracking-tight">
               List of staffs with TINs
             </h1>
           }
-          className="w-full max-w-5xl mx-auto"
+          className="md:w-full max-w-5xl mx-auto"
         >
           <ButtonAddEditStaff variant="default" size="icon">
             <PlusIcon />
