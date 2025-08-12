@@ -7,7 +7,7 @@ import ListOfStaffs from "./list-of-staffs";
 export default function Home() {
   return (
     <div className="min-h-dvh w-full flex flex-col">
-      <main className="h-full space-y-12 flex-1 w-full max-w-5xl mx-auto ">
+      <main className="h-full space-y-12 flex-1 w-full py-4 max-w-5xl mx-auto ">
         <section>
           <h1 className='text-xl md:text-2xl font-bold tracking-tighter text-center before:content-["TIN"] md:before:content-["TaxPayer_Identification_Number"] before:mr-2 '>
             Collection
