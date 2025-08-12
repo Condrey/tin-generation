@@ -33,11 +33,13 @@ export default function DialogDeleteStaff({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-destructive">
-            <AlertTriangle className="inline-flex mr-2"/>
-            Delete information of {staff.name}</DialogTitle>
+            <AlertTriangle className="inline-flex mr-2" />
+            Delete information of {staff.name}
+          </DialogTitle>
         </DialogHeader>
         <p>
-          Please note that this action can not be reversed, proceed with caution.
+          Please note that this action can not be reversed, proceed with
+          caution.
         </p>{" "}
         <DialogFooter>
           <Button variant={"secondary"} onClick={() => setOpen(false)}>

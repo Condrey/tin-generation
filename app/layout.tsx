@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/components/react-query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { webDescription } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TIN Generation",
-  description: "This website was created temporarily for collection TIN for staff with missing Salary for the Month of July 2025",
+  title: "TIN Collection | Lira City Council",
+  description: webDescription,
 };
 
 export default function RootLayout({
@@ -31,16 +32,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-       <ThemeProvider
-       defaultTheme="system"
-       enableSystem
-       >
-
-         <ReactQueryProvider>
-          {children}
-          <Toaster/>
-        </ReactQueryProvider>
-       </ThemeProvider>
+        <ThemeProvider defaultTheme="system" enableSystem>
+          <ReactQueryProvider>
+            {children}
+            <Toaster />
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

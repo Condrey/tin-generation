@@ -17,7 +17,7 @@ export default function ButtonAddEditTin({
   return (
     <>
       <Button
-        title={`${staff.tin?'Update the TIN':'Add TIN'} for ${staff.name}`}
+        title={`${staff.tin ? "Update the TIN" : "Add TIN"} for ${staff.name}`}
         onClick={() => setOpen(true)}
         {...props}
       />

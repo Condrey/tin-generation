@@ -49,7 +49,6 @@ export default function FormAddEditTin({
       title={`${!staff.tin ? "Create a new TIN" : "Update TIN"} for ${
         staff.name
       }`}
-      
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

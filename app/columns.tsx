@@ -35,86 +35,40 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "employeeNumber",
     header({ column }) {
-      return <DataTableColumnHeader column={column} title="Staff Name" />;
+      return (
+        <DataTableColumnHeader
+          column={column}
+          title="Employee number"
+          className="hidden md:flex"
+        />
+      );
     },
     cell({ row }) {
       const staff = row.original;
-      const isMobile = useIsMobile();
-      const tin = staff.tin;
+      const handleClick = () => {
+        navigator.clipboard
+          .writeText(staff.employeeNumber)
+          .then(() => {
+            toast.info(`Employee number for ${staff.name} copied to clipboard`);
+          })
+          .catch((err) => {
+            console.error("Failed to copy:", err);
+            toast.error(`Could not copy employee number for ${staff.name}`);
+          });
+      };
       return (
-        <div>
-          <div>{staff.name}</div>
-          {isMobile && (
-            <>
-              <div
-                className='text-muted-foreground text-xs before:content-["Supplier_No:"] before:mr-2 hover:text-foreground hover:cursor-pointer'
-                onClick={() => {
-                  navigator.clipboard
-                    .writeText(staff.supplierNumber)
-                    .then(() => {
-                      toast.info(
-                        `Supplier number for ${staff.name} copied to clipboard`
-                      );
-                    })
-                    .catch((err) => {
-                      console.error("Failed to copy:", err);
-                      toast.error(
-                        `Could not copy supplier number for ${staff.name}`
-                      );
-                    });
-                }}
-              >
-                {staff.supplierNumber}
-              </div>
-              <div
-                className='text-muted-foreground text-xs  before:content-["IPPS:"] before:mr-2 hover:text-foreground hover:cursor-pointer'
-                onClick={() => {
-                  navigator.clipboard
-                    .writeText(staff.employeeNumber)
-                    .then(() => {
-                      toast.info(
-                        `Employee number for ${staff.name} copied to clipboard`
-                      );
-                    })
-                    .catch((err) => {
-                      console.error("Failed to copy:", err);
-                      toast.error(
-                        `Could not copy employee number for ${staff.name}`
-                      );
-                    });
-                }}
-              >
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger className="hidden md:flex" asChild>
+              <Button className="" variant={"ghost"} onClick={handleClick}>
                 {staff.employeeNumber}
-              </div>
-              {!tin ? (
-                <div className='text-destructive text-xs before:content-["TIN:"] before:mr-2'>
-                  --has no TIN--
-                </div>
-              ) : (
-                <div
-                  className={cn(
-                    'text-muted-foreground text-xs  before:content-["TIN:"] before:mr-2 hover:text-foreground hover:cursor-pointer'
-                  )}
-                  onClick={() => {
-                    navigator.clipboard
-                      .writeText(tin)
-                      .then(() => {
-                        toast.info(`TIN for ${staff.name} copied to clipboard`);
-                      })
-                      .catch((err) => {
-                        console.error("Failed to copy:", err);
-                        toast.error(`Could not copy tIN for ${staff.name}`);
-                      });
-                  }}
-                >
-                  {tin}
-                </div>
-              )}
-            </>
-          )}
-        </div>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Click here to copy employee number</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       );
     },
   },
@@ -157,43 +111,90 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
     },
   },
   {
-    accessorKey: "employeeNumber",
+    accessorKey: "name",
     header({ column }) {
-      return (
-        <DataTableColumnHeader
-          column={column}
-          title="Employee number"
-          className="hidden md:flex"
-        />
-      );
+      return <DataTableColumnHeader column={column} title="Employee Name" />;
     },
     cell({ row }) {
       const staff = row.original;
-      const handleClick = () => {
-        navigator.clipboard
-          .writeText(staff.employeeNumber)
-          .then(() => {
-            toast.info(`Employee number for ${staff.name} copied to clipboard`);
-          })
-          .catch((err) => {
-            console.error("Failed to copy:", err);
-            toast.error(`Could not copy employee number for ${staff.name}`);
-          });
-      };
+      const isMobile = useIsMobile();
+      const tin = staff.tin;
       return (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger className="hidden md:flex" asChild>
-              <Button className="" variant={"ghost"} onClick={handleClick}>
+        <div>
+          <div>{staff.name}</div>
+          {isMobile && (
+            <>
+              <div
+                className='text-muted-foreground text-xs before:content-["Supplier_No:"] before:mr-2 hover:text-foreground hover:cursor-pointer'
+                onClick={() => {
+                  navigator.clipboard
+                    .writeText(staff.supplierNumber)
+                    .then(() => {
+                      toast.info(
+                        `Supplier number for ${staff.name} copied to clipboard`,
+                      );
+                    })
+                    .catch((err) => {
+                      console.error("Failed to copy:", err);
+                      toast.error(
+                        `Could not copy supplier number for ${staff.name}`,
+                      );
+                    });
+                }}
+              >
+                {staff.supplierNumber}
+              </div>
+              <div
+                className='text-muted-foreground text-xs  before:content-["IPPS:"] before:mr-2 hover:text-foreground hover:cursor-pointer'
+                onClick={() => {
+                  navigator.clipboard
+                    .writeText(staff.employeeNumber)
+                    .then(() => {
+                      toast.info(
+                        `Employee number for ${staff.name} copied to clipboard`,
+                      );
+                    })
+                    .catch((err) => {
+                      console.error("Failed to copy:", err);
+                      toast.error(
+                        `Could not copy employee number for ${staff.name}`,
+                      );
+                    });
+                }}
+              >
                 {staff.employeeNumber}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Click here to copy employee number</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+              </div>
+              {!tin ? (
+                <div className='text-destructive text-xs before:content-["TIN:"] before:mr-2'>
+                  --has no TIN--
+                </div>
+              ) : (
+                <div
+                  className={cn(
+                    'text-muted-foreground text-xs  before:content-["TIN:"] before:mr-2 hover:text-foreground hover:cursor-pointer',
+                  )}
+                  onClick={() => {
+                    navigator.clipboard
+                      .writeText(tin)
+                      .then(() => {
+                        toast.info(`TIN for ${staff.name} copied to clipboard`);
+                      })
+                      .catch((err) => {
+                        console.error("Failed to copy:", err);
+                        toast.error(`Could not copy tIN for ${staff.name}`);
+                      });
+                  }}
+                >
+                  {tin}
+                </div>
+              )}
+            </>
+          )}
+        </div>
       );
     },
   },
+
   {
     accessorKey: "tin",
     header({ column }) {

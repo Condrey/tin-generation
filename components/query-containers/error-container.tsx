@@ -23,7 +23,7 @@ export default function ErrorContainer({
     <div
       className={cn(
         "flex flex-col gap-4 min-h-[20rem] items-center justify-center",
-        className
+        className,
       )}
     >
       <p className="max-w-sm text-muted-foreground text-center">

@@ -6,7 +6,10 @@ import { staffSchema, StaffSchema } from "@/lib/validation";
 import { cache } from "react";
 
 async function allStaffs() {
-  return await prisma.staff.findMany({orderBy:{id:"asc"},include:staffDataInclude});
+  return await prisma.staff.findMany({
+    orderBy: { id: "asc" },
+    include: staffDataInclude,
+  });
 }
 export const getAllStaffs = cache(allStaffs);
 
@@ -31,13 +34,15 @@ export async function upsertStaff(input: StaffSchema) {
       tin: tin!,
       hasTin,
     },
-    include: staffDataInclude
+    include: staffDataInclude,
   });
 }
 
+export async function deleteStaff(id: number) {
+  //TODO: use authorization
 
-export async function deleteStaff(id:number){
-    //TODO: use authorization
-
-  return await prisma.staff.delete({where:{id},include:staffDataInclude})
+  return await prisma.staff.delete({
+    where: { id },
+    include: staffDataInclude,
+  });
 }

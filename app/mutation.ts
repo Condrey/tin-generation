@@ -27,7 +27,7 @@ export function useStaffMutation() {
       toast.error(
         `Failed to ${
           variables.id ? "update staff information. " : "create staff. "
-        } Please try again!`
+        } Please try again!`,
       );
     },
   });
