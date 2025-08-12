@@ -83,8 +83,9 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           }
           className="md:w-full max-w-5xl mx-auto"
         >
-          <ButtonAddEditStaff variant="default" size="icon">
+          <ButtonAddEditStaff variant="outline" size="icon">
             <PlusIcon />
+            <span className="sr-only">Add a new staff</span>
           </ButtonAddEditStaff>
         </DataTable>
       </TabsContent>

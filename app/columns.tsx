@@ -252,7 +252,7 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
           {hasTin ? (
             <DropdownMenuStaff staff={staff} />
           ) : (
-            <ButtonAddEditTin variant={"outline"} size={"icon"} staff={staff}>
+            <ButtonAddEditTin variant={"default"} size={"icon"} staff={staff}>
               <PlusIcon />
             </ButtonAddEditTin>
           )}
