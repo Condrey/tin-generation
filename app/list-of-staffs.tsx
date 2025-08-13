@@ -28,7 +28,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
     queryKey: ["all-staffs"],
     queryFn: getAllStaffs,
     initialData: staffs,
-    refetchInterval: 5000,
+    refetchInterval: 10000,
   });
 
   const { status, data, error } = query;
