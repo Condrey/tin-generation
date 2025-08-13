@@ -93,7 +93,7 @@ export function DataTable<TData, TValue>({
       {/* filtering , column visibility and children */}
       <div className="flex items-center flex-wrap gap-2 justify-between py-4">
         {!!filterColumn && (
-          <div className="relative">
+          <div className="relative flex flex-1">
             <SearchIcon className="absolute start-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-colors peer-focus:text-foreground peer-focus-visible:text-foreground" />
             <Input
               placeholder={`Search by ${
@@ -109,7 +109,7 @@ export function DataTable<TData, TValue>({
                   .getColumn(filterColumn.id)
                   ?.setFilterValue(event.target.value)
               }
-              className="peer max-w-md ps-7"
+              className="peer w-full max-w-[300px]   ps-7"
             />
           </div>
         )}

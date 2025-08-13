@@ -79,7 +79,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           data={data}
           columns={useStaffColumns}
           query={query}
-          filterColumn={{ id: "name" }}
+          filterColumn={{ id: "name", label:"name e.g., surname" }}
           tableHeaderSection={
             <h1 className="md:text-xl capitalize font-semibold tracking-tight">
               List of all affected staffs
@@ -121,7 +121,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           data={remainingStaffs}
           columns={useStaffColumns}
           query={query}
-          filterColumn={{ id: "name" }}
+          filterColumn={{ id: "name", label:"name e.g., surname" }}
           tableHeaderSection={
             <h1 className="md:text-xl text-destructive capitalize font-semibold tracking-tight">
               List of staffs without TINs
@@ -166,7 +166,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           data={completedStaffs}
           columns={useStaffColumns}
           query={query}
-          filterColumn={{ id: "name" }}
+          filterColumn={{ id: "name", label:"name e.g., surname" }}
           tableHeaderSection={
             <h1 className="md:text-xl text-green-500 dark:text-green-700 capitalize font-semibold tracking-tight">
               List of staffs with TINs
