@@ -67,7 +67,7 @@ export default function FormAddEditTin({
             )}
           />
           <LoadingButton loading={isPending} className="w-full">
-            {staff.tin ? "Update TIN" : "Create TIN"}
+            {staff.tin ? "Update the TIN" : "Submit the TIN"}
           </LoadingButton>
         </form>
       </Form>
