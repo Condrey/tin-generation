@@ -79,7 +79,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           data={data}
           columns={useStaffColumns}
           query={query}
-          filterColumn={{ id: "name", label:"name e.g., surname" }}
+          filterColumn={{ id: "name", label: "name e.g., surname" }}
           tableHeaderSection={
             <h1 className="md:text-xl capitalize font-semibold tracking-tight">
               List of all affected staffs
@@ -103,7 +103,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               XLSX.utils.book_append_sheet(workBook, workSheet, "All Staffs");
               XLSX.writeFile(
                 workBook,
-                "all-staffs" + "-" + Date.now() + ".xlsx",
+                "all-staffs" + "-" + Date.now() + ".xlsx"
               );
             }}
           >
@@ -121,7 +121,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           data={remainingStaffs}
           columns={useStaffColumns}
           query={query}
-          filterColumn={{ id: "name", label:"name e.g., surname" }}
+          filterColumn={{ id: "name", label: "name e.g., surname" }}
           tableHeaderSection={
             <h1 className="md:text-xl text-destructive capitalize font-semibold tracking-tight">
               List of staffs without TINs
@@ -145,11 +145,11 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               XLSX.utils.book_append_sheet(
                 workBook,
                 workSheet,
-                "Remaining Staffs",
+                "Remaining Staffs"
               );
               XLSX.writeFile(
                 workBook,
-                "remaining-staffs" + "-" + Date.now() + ".xlsx",
+                "remaining-staffs" + "-" + Date.now() + ".xlsx"
               );
             }}
           >
@@ -166,7 +166,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
           data={completedStaffs}
           columns={useStaffColumns}
           query={query}
-          filterColumn={{ id: "name", label:"name e.g., surname" }}
+          filterColumn={{ id: "name", label: "name e.g., surname" }}
           tableHeaderSection={
             <h1 className="md:text-xl text-green-500 dark:text-green-700 capitalize font-semibold tracking-tight">
               List of staffs with TINs
@@ -190,11 +190,11 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               XLSX.utils.book_append_sheet(
                 workBook,
                 workSheet,
-                "Completed Staffs",
+                "Completed Staffs"
               );
               XLSX.writeFile(
                 workBook,
-                "completed-staffs" + "-" + Date.now() + ".xlsx",
+                "completed-staffs" + "-" + Date.now() + ".xlsx"
               );
             }}
           >
