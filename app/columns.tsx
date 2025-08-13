@@ -17,6 +17,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 import ButtonAddEditTin from "./button-add-edit-tin";
 import DropdownMenuStaff from "./drop-down-menu-staff";
+import { CheckIcon } from "lucide-react";
 
 export const useStaffColumns: ColumnDef<StaffData>[] = [
   {
@@ -173,7 +174,7 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
               ) : (
                 <div
                   className={cn(
-                    'text-muted-foreground text-xs  before:content-["TIN:"] before:mr-2 hover:text-foreground hover:cursor-pointer',
+                    'text-green-500 text-xs flex flex-row before:content-["TIN:"] before:mr-2  hover:text-foreground hover:cursor-pointer',
                   )}
                   onClick={() => {
                     navigator.clipboard
@@ -183,11 +184,11 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
                       })
                       .catch((err) => {
                         console.error("Failed to copy:", err);
-                        toast.error(`Could not copy tIN for ${staff.name}`);
+                        toast.error(`Could not copy TIN for ${staff.name}`);
                       });
                   }}
                 >
-                  {tin}
+                 <CheckIcon className="size-3 inline-flex"/> {tin}
                 </div>
               )}
             </>
@@ -230,8 +231,9 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
           ) : (
             <Tooltip>
               <TooltipTrigger className="hidden md:flex" asChild>
-                <Button className="" variant={"ghost"} onClick={handleClick}>
-                  {staff.tin}
+                <Button className="text-green-500" variant={"ghost"} onClick={handleClick}
+                >
+                <CheckIcon/>  {staff.tin}
                 </Button>
               </TooltipTrigger>
               <TooltipContent>Click here to copy TIN</TooltipContent>
