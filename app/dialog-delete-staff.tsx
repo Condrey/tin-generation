@@ -48,7 +48,7 @@ export default function DialogDeleteStaff({
     input.permission === securityKey
       ? mutate(staff.id, { onSuccess: () => setOpen(false) })
       : toast.error(
-          "The provided security key is not correct. Please try again!"
+          "The provided security key is not correct. Please try again!",
         );
   }
 

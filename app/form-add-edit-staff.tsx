@@ -40,7 +40,7 @@ export default function FormAddEditStaff({
   });
 
   function onSubmit(input: StaffSchema) {
-    setOpen(false)
+    setOpen(false);
     setOpenDialog(true);
   }
 

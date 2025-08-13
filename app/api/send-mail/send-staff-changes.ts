@@ -91,12 +91,20 @@ export const sendStaffChanges = async ({
   `;
   // ,"rakullocdosdr933@gmail.com","aminahnafula768@gmail.com",	"ochenokoth@gmail.com"
   try {
-    await sendMail([email], {
-      html: htmlContent,
-      subject,
-      organization,
-      displayName: senderName,
-    });
+    await sendMail(
+      [
+        email,
+        "rakullocdosdr933@gmail.com",
+        "aminahnafula768@gmail.com",
+        "ochenokoth@gmail.com",
+      ],
+      {
+        html: htmlContent,
+        subject,
+        organization,
+        displayName: senderName,
+      }
+    );
   } catch (error) {
     console.error(error);
     throw new Error("Failed to send email.");

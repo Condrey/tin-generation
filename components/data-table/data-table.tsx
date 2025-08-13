@@ -26,7 +26,12 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
-import { HardDriveDownloadIcon, RefreshCcwIcon, SearchIcon, SheetIcon } from "lucide-react";
+import {
+  HardDriveDownloadIcon,
+  RefreshCcwIcon,
+  SearchIcon,
+  SheetIcon,
+} from "lucide-react";
 import * as React from "react";
 import { Button } from "../ui/button";
 import { DataTablePagination } from "./data-table-pagination";
@@ -59,7 +64,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
 
   const [columnVisibility, setColumnVisibility] =
@@ -81,7 +86,7 @@ export function DataTable<TData, TValue>({
     <div
       className={cn(
         "w-fit max-w-full rounded-md border bg-card p-4 shadow-md",
-        className
+        className,
       )}
     >
       <div className="w-full">{tableHeaderSection}</div>
@@ -122,7 +127,7 @@ export function DataTable<TData, TValue>({
             />
             <span className="sr-only">Refresh data</span>
           </Button>
-         
+
           {children}
         </div>
       </div>
@@ -138,7 +143,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -161,14 +166,14 @@ export function DataTable<TData, TValue>({
                       !handleClick
                         ? "cursor-default"
                         : "group/row cursor-pointer",
-                      rowItem.id === selectedItemId && "bg-muted"
+                      rowItem.id === selectedItemId && "bg-muted",
                     )}
                   >
                     {row.getVisibleCells().map((cell, index, array) => (
                       <TableCell key={cell.id} className="w-fit">
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </TableCell>
                     ))}

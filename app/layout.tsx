@@ -32,13 +32,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <ThemeProvider   attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <ReactQueryProvider>
             {children}
-            <Toaster richColors  />
+            <Toaster richColors />
           </ReactQueryProvider>
         </ThemeProvider>
       </body>

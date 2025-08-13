@@ -55,7 +55,7 @@ export default function DialogUpsertStaff({
           },
         })
       : toast.error(
-          "The provided security key is not correct. Please try again!"
+          "The provided security key is not correct. Please try again!",
         );
   }
 
@@ -81,7 +81,7 @@ export default function DialogUpsertStaff({
                 <FormItem>
                   <FormControl>
                     <Input
-                    type="password"
+                      type="password"
                       placeholder="enter security key to proceed"
                       {...field}
                     />

@@ -27,7 +27,7 @@ export function useUpsertStaffMutation() {
       toast.error(
         `Failed to ${
           variables.id ? "update staff information. " : "create staff. "
-        } Please try again!`
+        } Please try again!`,
       );
     },
   });
@@ -41,8 +41,8 @@ export function useUpdateStaffTinMutation() {
       await queryClient.cancelQueries();
       queryClient.setQueryData<StaffData[]>(queryKey, (oldData) => {
         if (!oldData) return;
-         toast.success(`Successfully updated TIN for ${data.name}`);
-          return oldData.map((d) => (d.id === data.id ? data : d));
+        toast.success(`Successfully updated TIN for ${data.name}`);
+        return oldData.map((d) => (d.id === data.id ? data : d));
       });
     },
     onError(error, variables, context) {
@@ -50,7 +50,7 @@ export function useUpdateStaffTinMutation() {
       toast.error(
         `Failed to ${
           variables.id ? "update staff TIN. " : "create staff TIN. "
-        } Please try again!`
+        } Please try again!`,
       );
     },
   });

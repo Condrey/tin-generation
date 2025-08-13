@@ -43,7 +43,7 @@ export async function upsertStaff(input: StaffSchema) {
         where: { hasTin: true },
       });
       return { data, totalStaffs, staffsCompleted };
-    }
+    },
   );
   await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send-mail`, {
     method: "POST",
@@ -81,7 +81,7 @@ export async function updateStaffTin(input: StaffSchema) {
         where: { hasTin: true },
       });
       return { data, totalStaffs, staffsCompleted };
-    }
+    },
   );
   await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send-mail`, {
     method: "POST",
@@ -112,7 +112,7 @@ export async function deleteStaff(id: number) {
         where: { hasTin: true },
       });
       return { data, totalStaffs, staffsCompleted };
-    }
+    },
   );
   await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send-mail`, {
     method: "POST",

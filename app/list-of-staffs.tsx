@@ -103,7 +103,7 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               XLSX.utils.book_append_sheet(workBook, workSheet, "All Staffs");
               XLSX.writeFile(
                 workBook,
-                "all-staffs" + "-" + Date.now() + ".xlsx"
+                "all-staffs" + "-" + Date.now() + ".xlsx",
               );
             }}
           >
@@ -145,11 +145,11 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               XLSX.utils.book_append_sheet(
                 workBook,
                 workSheet,
-                "Remaining Staffs"
+                "Remaining Staffs",
               );
               XLSX.writeFile(
                 workBook,
-                "remaining-staffs" + "-" + Date.now() + ".xlsx"
+                "remaining-staffs" + "-" + Date.now() + ".xlsx",
               );
             }}
           >
@@ -190,11 +190,11 @@ export default function ListOfStaffs({ staffs }: ListOfStaffsProps) {
               XLSX.utils.book_append_sheet(
                 workBook,
                 workSheet,
-                "Completed Staffs"
+                "Completed Staffs",
               );
               XLSX.writeFile(
                 workBook,
-                "completed-staffs" + "-" + Date.now() + ".xlsx"
+                "completed-staffs" + "-" + Date.now() + ".xlsx",
               );
             }}
           >
