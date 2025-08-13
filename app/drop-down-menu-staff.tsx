@@ -34,7 +34,7 @@ export default function DropdownMenuStaff({ staff }: DropdownMenuStaffProps) {
   const [openStaffDelete, setOpenStaffDelete] = useState(false);
   return (
     <>
-      <DropdownMenu modal={false}>
+      <DropdownMenu >
         <DropdownMenuTrigger asChild>
           <Button size={"icon"} variant={"ghost"}>
             <MoreVertical />

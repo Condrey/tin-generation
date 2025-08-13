@@ -1,5 +1,6 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -9,6 +10,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import {
+  DefinedUseQueryResult,
+  QueryObserverLoadingErrorResult,
+} from "@tanstack/react-query";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -21,16 +26,11 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
-import { RefreshCcwIcon, SearchIcon } from "lucide-react";
+import { HardDriveDownloadIcon, RefreshCcwIcon, SearchIcon, SheetIcon } from "lucide-react";
 import * as React from "react";
+import { Button } from "../ui/button";
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableViewOptions } from "./data-table-view-options";
-import { Input } from "@/components/ui/input";
-import {
-  DefinedUseQueryResult,
-  QueryObserverLoadingErrorResult,
-} from "@tanstack/react-query";
-import { Button } from "../ui/button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -59,7 +59,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
+    []
   );
 
   const [columnVisibility, setColumnVisibility] =
@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({
     <div
       className={cn(
         "w-fit max-w-full rounded-md border bg-card p-4 shadow-md",
-        className,
+        className
       )}
     >
       <div className="w-full">{tableHeaderSection}</div>
@@ -91,7 +91,9 @@ export function DataTable<TData, TValue>({
           <div className="relative">
             <SearchIcon className="absolute start-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground transition-colors peer-focus:text-foreground peer-focus-visible:text-foreground" />
             <Input
-              placeholder={`Search by ${filterColumn.label ?? filterColumn.id}...`}
+              placeholder={`Search by ${
+                filterColumn.label ?? filterColumn.id
+              }...`}
               value={
                 (table
                   .getColumn(filterColumn.id)
@@ -118,7 +120,9 @@ export function DataTable<TData, TValue>({
             <RefreshCcwIcon
               className={cn(query.isFetching && "animate-spin")}
             />
+            <span className="sr-only">Refresh data</span>
           </Button>
+         
           {children}
         </div>
       </div>
@@ -134,7 +138,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                     </TableHead>
                   );
@@ -157,14 +161,14 @@ export function DataTable<TData, TValue>({
                       !handleClick
                         ? "cursor-default"
                         : "group/row cursor-pointer",
-                      rowItem.id === selectedItemId && "bg-muted",
+                      rowItem.id === selectedItemId && "bg-muted"
                     )}
                   >
                     {row.getVisibleCells().map((cell, index, array) => (
                       <TableCell key={cell.id} className="w-fit">
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext(),
+                          cell.getContext()
                         )}
                       </TableCell>
                     ))}

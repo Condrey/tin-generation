@@ -5,6 +5,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/ui/loading-button";
@@ -12,7 +13,7 @@ import { StaffData } from "@/lib/types";
 import { staffSchema, StaffSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useStaffMutation } from "./mutation";
+import { useUpdateStaffTinMutation, useUpsertStaffMutation } from "./mutation";
 
 interface FormAddEditTinProps {
   staff: StaffData;
@@ -25,11 +26,11 @@ export default function FormAddEditTin({
   open,
   setOpen,
 }: FormAddEditTinProps) {
-  const { isPending, mutate } = useStaffMutation();
+  const { isPending, mutate } = useUpdateStaffTinMutation();
 
   const form = useForm<StaffSchema>({
     resolver: zodResolver(staffSchema),
-    defaultValues: {
+    values: {
       id: staff?.id || 0,
       employeeNumber: staff?.employeeNumber || "",
       supplierNumber: staff?.supplierNumber || "",
@@ -61,6 +62,7 @@ export default function FormAddEditTin({
                 <FormControl>
                   <Input placeholder="enter your TIN here " {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />

@@ -15,38 +15,45 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/ui/loading-button";
-import { StaffData } from "@/lib/types";
 import { securityKey } from "@/lib/utils";
+import { StaffSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertTriangle } from "lucide-react";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
-import { useDeleteStaffMutation } from "./mutation";
+import { useUpsertStaffMutation } from "./mutation";
 
-interface DialogDeleteStaffProps {
-  staff: StaffData;
+interface DialogUpsertStaffProps {
+  formInput: StaffSchema;
   open: boolean;
   setOpen: (open: boolean) => void;
+  setOpenForm: (openForm: boolean) => void;
 }
 
-export default function DialogDeleteStaff({
-  staff,
+export default function DialogUpsertStaff({
+  formInput,
   open,
   setOpen,
-}: DialogDeleteStaffProps) {
-  const { isPending, mutate } = useDeleteStaffMutation();
+  setOpenForm,
+}: DialogUpsertStaffProps) {
+  const { isPending, mutate } = useUpsertStaffMutation();
   const schema = z.object({
     permission: z.string().min(1, "Please enter permission code."),
   });
   type Schema = z.infer<typeof schema>;
-  const form = useForm<Schema>({
+  const form2 = useForm<Schema>({
     resolver: zodResolver(schema),
     values: { permission: "" },
   });
   function handleSubmit(input: Schema) {
     input.permission === securityKey
-      ? mutate(staff.id, { onSuccess: () => setOpen(false) })
+      ? mutate(formInput, {
+          onSuccess: () => {
+            setOpen(false);
+            setOpenForm(false);
+          },
+        })
       : toast.error(
           "The provided security key is not correct. Please try again!"
         );
@@ -54,30 +61,27 @@ export default function DialogDeleteStaff({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent>
+      <DialogContent className="max-w-sm bg-card text-card-foreground">
         <DialogHeader>
-          <DialogTitle className="text-destructive">
-            <AlertTriangle className="inline-flex mr-2" />
-            Delete information of {staff.name}
+          <DialogTitle className="">
+            <InfoCircledIcon className="inline-flex mr-2" />
+            Confirm Security code
           </DialogTitle>
         </DialogHeader>
-        <p>
-          Please note that this action can not be reversed, proceed with
-          caution.
-        </p>{" "}
-        <Form {...form}>
+
+        <Form {...form2}>
           <form
-            onSubmit={form.handleSubmit(handleSubmit)}
+            onSubmit={form2.handleSubmit(handleSubmit)}
             className="space-y-4"
           >
             <FormField
-              control={form.control}
+              control={form2.control}
               name="permission"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
-                      type="password"
+                    type="password"
                       placeholder="enter security key to proceed"
                       {...field}
                     />
@@ -90,16 +94,19 @@ export default function DialogDeleteStaff({
               <Button
                 type="button"
                 variant={"secondary"}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  setOpenForm(true);
+                }}
               >
                 Discard
               </Button>
               <LoadingButton
                 loading={isPending}
-                type={"submit"}
-                variant={"destructive"}
+                type={"button"}
+                onClick={() => form2.handleSubmit(handleSubmit)()}
               >
-                Delete Staff
+                Confirm
               </LoadingButton>
             </DialogFooter>
           </form>

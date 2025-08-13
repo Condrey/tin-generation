@@ -4,7 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/components/react-query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
-import { webDescription } from "@/lib/utils";
+import { webDescription, webName } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TIN Collection | Lira City Council",
+  title: webName,
   description: webDescription,
 };
 

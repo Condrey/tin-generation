@@ -120,8 +120,8 @@ export const useStaffColumns: ColumnDef<StaffData>[] = [
       const isMobile = useIsMobile();
       const tin = staff.tin;
       return (
-        <div>
-          <div className="flex line-clamp-1 text-ellipsis">{staff.name}</div>
+        <div className="*:line-clamp-1 *:text-ellipsis *:max-w-38 *:sm:max-w-fit">
+          <p className="flex break-all line-clamp-1 text-ellipsis ">{staff.name}</p>
           {isMobile && (
             <>
               <div

@@ -3,10 +3,10 @@
 import { StaffData } from "@/lib/types";
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { deleteStaff, upsertStaff } from "./action";
+import { deleteStaff, updateStaffTin, upsertStaff } from "./action";
 
 const queryKey: QueryKey = ["all-staffs"];
-export function useStaffMutation() {
+export function useUpsertStaffMutation() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: upsertStaff,
@@ -27,7 +27,30 @@ export function useStaffMutation() {
       toast.error(
         `Failed to ${
           variables.id ? "update staff information. " : "create staff. "
-        } Please try again!`,
+        } Please try again!`
+      );
+    },
+  });
+}
+
+export function useUpdateStaffTinMutation() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateStaffTin,
+    async onSuccess(data, variables, context) {
+      await queryClient.cancelQueries();
+      queryClient.setQueryData<StaffData[]>(queryKey, (oldData) => {
+        if (!oldData) return;
+         toast.success(`Successfully updated TIN for ${data.name}`);
+          return oldData.map((d) => (d.id === data.id ? data : d));
+      });
+    },
+    onError(error, variables, context) {
+      console.error(error);
+      toast.error(
+        `Failed to ${
+          variables.id ? "update staff TIN. " : "create staff TIN. "
+        } Please try again!`
       );
     },
   });
