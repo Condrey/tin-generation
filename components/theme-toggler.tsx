@@ -17,9 +17,7 @@ export function ThemeToggler() {
   return (
     <div className="">
       {" "}
-      <span>
-        {isMobile ? "Choose theme:" : "Choose your preferred theme: "}
-      </span>
+      <span>{isMobile ? "" : "Choose your preferred theme: "}</span>
       {toggleThemes.map(({ name, theme, icon }) => {
         const Icon = icon;
         return (
